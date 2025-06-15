@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>住宅ローンシミュレーター</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>住宅ローンシミュレーター</h1>
+  <form id="loan-form">
+    <label>計算モード：<br>
+      <input type="radio" name="mode" value="toMonthly" checked> 借入額から月額返済額を計算
+      <input type="radio" name="mode" value="toPrincipal"> 月額返済額から借入可能額を計算
+    </label><br>
+    <div id="principal-group">
+      <label>借入金額（円）<br><input type="number" id="principal" required></label><br>
+    </div>
+    <div id="monthly-group" style="display:none;">
+      <label>月額返済額（円）<br><input type="number" id="monthly"></label><br>
+    </div>
+    <label>金利（年利 %）<br><input type="number" id="rate" step="0.001" required></label><br>
+    <label>返済期間（年）<br><input type="number" id="years" required></label><br>
+    <label>ボーナス時返済額（円/回）<br><input type="number" id="bonus" value="0"></label><br>
+    <label>繰り上げ返済：<br>
+      <input type="radio" name="extraRepayment" value="none" checked> なし
+      <input type="radio" name="extraRepayment" value="yearly"> 毎年
+      <input type="radio" name="extraRepayment" value="monthly"> 毎月
+      <input type="radio" name="extraRepayment" value="custom"> 任意
+    </label><br>
+    <div id="extraRepaymentGroup" style="display:none;">
+      <div id="extraAmountGroup" style="display:none;">
+        <label>繰り上げ返済額（円）<input type="number" id="extraAmount" value="0"></label><br>
+        <label>繰り上げ返済方式：
+          <input type="radio" name="extraType" value="shorten" checked> 期間短縮型
+          <input type="radio" name="extraType" value="reduce"> 返済額軽減型
+        </label><br>
+      </div>
+      <div id="customTimingGroup" style="display:none;">
+        <div id="extraList">
+          <div class="extra-item">
+            <label>年<input type="number" class="customTiming" min="1" max="30" value="1"></label>
+            <label>月<input type="number" class="customTimingMonth" min="1" max="12" value="1"></label>
+            <label>金額（円）<input type="number" class="customAmount" value="0"></label>
+            <label>方式：
+              <select class="customType">
+                <option value="shorten">期間短縮型</option>
+                <option value="reduce">返済額軽減型</option>
+              </select>
+            </label>
+            <button type="button" class="removeExtra" onclick="this.parentNode.remove()">削除</button>
+          </div>
+        </div>
+        <button type="button" id="addExtra">＋繰り上げ返済タイミングを追加</button><br>
+      </div>
+    </div>
+    <label>返済方法：<br>
+      <input type="radio" name="repaymentType" value="annuity" checked> 元利均等返済
+      <input type="radio" name="repaymentType" value="principal"> 元金均等返済
+    </label><br>
+    <div id="interestChangeGroup" style="margin:20px 0;">
+      <h3>金利変更タイミング（任意）</h3>
+      <div id="interestList">
+        <div class="interest-item">
+          <label>年<input type="number" class="interestTiming" min="1" max="30" value="1"></label>
+          <label>月<input type="number" class="interestTimingMonth" min="1" max="12" value="1"></label>
+          <label>新金利（年利%）<input type="number" class="interestValue" step="0.001" value=""></label>
+          <button type="button" class="removeInterest" onclick="this.parentNode.remove()">削除</button>
+        </div>
+      </div>
+      <button type="button" id="addInterest">＋金利変更タイミングを追加</button><br>
+    </div>
+    <button type="submit">計算する</button>
+  </form>
+  <div id="result"></div>
+  <div style="max-width:800px;margin:30px auto;">
+    <canvas id="loanChart" height="300"></canvas>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0/dist/chartjs-plugin-annotation.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
