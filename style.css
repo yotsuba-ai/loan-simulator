@@ -1,0 +1,102 @@
+body {
+  font-family: 'Segoe UI', 'Meiryo', sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 30px;
+}
+
+form {
+  background: #fff;
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 15px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #0078d7;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #005fa3;
+}
+
+#result {
+  max-width: 600px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 15px;
+    padding: 0 2vw;
+  }
+  form, #result {
+    max-width: 100%;
+    padding: 10px;
+  }
+  table {
+    font-size: 13px;
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  #loanChart {
+    width: 100% !important;
+    height: auto !important;
+  }
+  h1 {
+    font-size: 22px;
+  }
+  button {
+    font-size: 15px;
+    padding: 8px;
+  }
+  label {
+    font-size: 14px;
+  }
+}
+
+.toggle-btn {
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 8px;
+  background: none;
+  border: none;
+  color: #0078d7;
+  vertical-align: middle;
+}
+
+.schedule-collapsed {
+  display: none;
+}
